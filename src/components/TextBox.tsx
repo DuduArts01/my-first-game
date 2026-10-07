@@ -29,7 +29,7 @@ export default function TextBox() {
     }
 
     useEffect(() => {
-        const closeHandler = (e) => {
+        const closeHandler = (e: KeyboardEvent) => {
             if (!isVisible) return; // !false == true => action nothing 
             
             if (e.code === "Space") {
