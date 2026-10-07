@@ -1,7 +1,11 @@
-// import useState
+// import textbox
+import TextBox from "./components/TextBox"
+
 export default function ReactUI() {  
   return (
-    <div></div>
+    <div>
+      < TextBox />
+    </div>
   )
 }
 

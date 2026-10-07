@@ -5,6 +5,9 @@ import initKaplay from "./initKaplay";
 import background from "../public/sprites/background.png"
 import characters from "../public/sprites/characters.png"
 
+// Import store.ts
+import { store,  textBoxContentAtom, isTextBoxVisibleAtom} from "./store";
+
 
 export default function initGame(){
     const k = initKaplay();
@@ -119,4 +122,39 @@ export default function initGame(){
 
         player.move(player.direction.scale(player.speed))
     });  
+
+    const npc = k.add([
+        k.sprite("characters", { anim: "npc-left" }),
+        k.area(),
+        k.body({isStatic: true}),
+        k.anchor("center"),
+        k.scale(8),
+        k.pos(1480, 500),
+    ]);
+
+    npc.onCollide("player", (player) => {
+        // console.log("collide with the player"); // test collide
+        
+        if(player.direction.eq(k.vec2(0, -1))) { // down npc
+            store.set(textBoxContentAtom, "Beautiful day, isn't it?");
+            npc.play("npc-down");
+        }
+
+        if(player.direction.eq(k.vec2(0, 1))) { // up npc
+            store.set(textBoxContentAtom, "Those rocks are heavy!");
+            npc.play("npc-up");
+        }
+
+        if(player.direction.eq(k.vec2(1, 0))) { // left npc
+            store.set(textBoxContentAtom, "This text box is made with React.JS!");
+            npc.play("npc-left");
+        }
+
+        if(player.direction.eq(k.vec2(-1, 0))) { // right npc
+            store.set(textBoxContentAtom, "Is the water too cold?");
+            npc.play("npc-right");
+        }
+
+        store.set(isTextBoxVisibleAtom, true); // change the state false --> true
+    })
 }
