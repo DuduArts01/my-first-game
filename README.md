@@ -64,7 +64,7 @@ Durante o desenvolvimento e adaptação para TypeScript, as seguintes documenta�
   npm i framer-motion
   ```
 
-  3. Inicie o servidor de desenvolvimento:
-    ```bash
-    npm run dev
-    ```
+3. Inicie o servidor de desenvolvimento:
+  ```bash
+  npm run dev
+  ```
